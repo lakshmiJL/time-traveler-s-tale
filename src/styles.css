@@ -1,0 +1,276 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   THE STORY OF EVOLUTION — Design System
+   Cosmic → Earth → Future palette with neon glows.
+   All colors in oklch. Use semantic tokens, never raw colors.
+   ============================================================ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* Story palette */
+  --color-cosmos: var(--cosmos);
+  --color-nebula: var(--nebula);
+  --color-cyan-glow: var(--cyan-glow);
+  --color-magenta-glow: var(--magenta-glow);
+  --color-amber-glow: var(--amber-glow);
+  --color-lava: var(--lava);
+  --color-ocean: var(--ocean);
+  --color-leaf: var(--leaf);
+  --color-future: var(--future);
+
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Default = dark cosmic theme (this site lives in space) */
+  --background: oklch(0.13 0.04 280);
+  --foreground: oklch(0.98 0.01 250);
+
+  --card: oklch(0.18 0.05 280 / 60%);
+  --card-foreground: oklch(0.98 0.01 250);
+  --popover: oklch(0.18 0.05 280);
+  --popover-foreground: oklch(0.98 0.01 250);
+
+  --primary: oklch(0.78 0.18 200);          /* cyan */
+  --primary-foreground: oklch(0.13 0.04 280);
+  --secondary: oklch(0.72 0.22 330);         /* magenta */
+  --secondary-foreground: oklch(0.98 0.01 250);
+  --muted: oklch(0.25 0.04 280);
+  --muted-foreground: oklch(0.78 0.03 260);
+  --accent: oklch(0.85 0.18 85);             /* amber */
+  --accent-foreground: oklch(0.13 0.04 280);
+  --destructive: oklch(0.65 0.25 25);
+  --destructive-foreground: oklch(0.98 0.01 250);
+
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.78 0.18 200);
+
+  /* Story-specific tokens */
+  --cosmos: oklch(0.10 0.05 285);
+  --nebula: oklch(0.25 0.12 300);
+  --cyan-glow: oklch(0.82 0.18 200);
+  --magenta-glow: oklch(0.72 0.24 330);
+  --amber-glow: oklch(0.85 0.18 80);
+  --lava: oklch(0.62 0.22 35);
+  --ocean: oklch(0.45 0.14 230);
+  --leaf: oklch(0.65 0.18 145);
+  --future: oklch(0.78 0.16 280);
+
+  --gradient-cosmos: radial-gradient(ellipse at top, oklch(0.25 0.12 300) 0%, oklch(0.08 0.04 285) 70%);
+  --gradient-earth: linear-gradient(180deg, oklch(0.35 0.18 35) 0%, oklch(0.18 0.10 30) 100%);
+  --gradient-ocean: linear-gradient(180deg, oklch(0.55 0.14 220) 0%, oklch(0.20 0.10 240) 100%);
+  --gradient-land: linear-gradient(180deg, oklch(0.70 0.16 90) 0%, oklch(0.45 0.14 130) 100%);
+  --gradient-jurassic: linear-gradient(180deg, oklch(0.60 0.16 50) 0%, oklch(0.30 0.14 30) 100%);
+  --gradient-extinction: linear-gradient(180deg, oklch(0.45 0.22 25) 0%, oklch(0.15 0.06 280) 100%);
+  --gradient-mammals: linear-gradient(180deg, oklch(0.65 0.10 60) 0%, oklch(0.40 0.10 40) 100%);
+  --gradient-future: linear-gradient(180deg, oklch(0.30 0.18 290) 0%, oklch(0.55 0.20 200) 100%);
+
+  --shadow-glow-cyan: 0 0 40px oklch(0.78 0.18 200 / 0.55), 0 0 80px oklch(0.78 0.18 200 / 0.25);
+  --shadow-glow-magenta: 0 0 40px oklch(0.72 0.22 330 / 0.55), 0 0 80px oklch(0.72 0.22 330 / 0.25);
+  --shadow-glow-amber: 0 0 40px oklch(0.85 0.18 80 / 0.6), 0 0 90px oklch(0.85 0.18 80 / 0.3);
+
+  --chart-1: oklch(0.78 0.18 200);
+  --chart-2: oklch(0.72 0.22 330);
+  --chart-3: oklch(0.85 0.18 80);
+  --chart-4: oklch(0.65 0.18 145);
+  --chart-5: oklch(0.62 0.22 35);
+
+  --sidebar: oklch(0.13 0.04 280);
+  --sidebar-foreground: oklch(0.98 0.01 250);
+  --sidebar-primary: oklch(0.78 0.18 200);
+  --sidebar-primary-foreground: oklch(0.13 0.04 280);
+  --sidebar-accent: oklch(0.25 0.04 280);
+  --sidebar-accent-foreground: oklch(0.98 0.01 250);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.78 0.18 200);
+}
+
+/* Light mode (a "daylight" variant — story still has dark sections). */
+.light {
+  --background: oklch(0.98 0.01 250);
+  --foreground: oklch(0.15 0.04 280);
+  --card: oklch(1 0 0 / 80%);
+  --card-foreground: oklch(0.15 0.04 280);
+  --muted: oklch(0.94 0.01 250);
+  --muted-foreground: oklch(0.45 0.03 260);
+  --border: oklch(0.15 0.04 280 / 12%);
+  --input: oklch(0.15 0.04 280 / 12%);
+}
+
+/* ===== Keyframes ===== */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(10px); }
+}
+@keyframes float-fish {
+  0% { transform: translateX(-20vw) translateY(0); }
+  50% { transform: translateX(50vw) translateY(-20px); }
+  100% { transform: translateX(120vw) translateY(0); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+@keyframes lava-pulse {
+  0%, 100% { opacity: 0.8; filter: blur(20px); }
+  50% { opacity: 1; filter: blur(30px); }
+}
+@keyframes smoke-rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.6; }
+  100% { transform: translateY(-200px) scale(1.8); opacity: 0; }
+}
+@keyframes meteor-fall {
+  0% { transform: translate(-30vw, -30vh) rotate(35deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate(60vw, 80vh) rotate(35deg); opacity: 1; }
+}
+@keyframes screen-shake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-6px, 4px); }
+  40% { transform: translate(6px, -4px); }
+  60% { transform: translate(-4px, -4px); }
+  80% { transform: translate(4px, 4px); }
+}
+@keyframes flash {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--shadow-glow-cyan); }
+  50% { box-shadow: var(--shadow-glow-magenta); }
+}
+@keyframes walk-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Continuous "living photo" ken-burns — gives static images a gif-like feel. */
+@keyframes ken-burns {
+  0%   { transform: scale(1.08) translate3d(0, 0, 0); }
+  25%  { transform: scale(1.14) translate3d(-1.5%, -1%, 0); }
+  50%  { transform: scale(1.18) translate3d(1.5%, 1%, 0); }
+  75%  { transform: scale(1.14) translate3d(1%, -1.5%, 0); }
+  100% { transform: scale(1.08) translate3d(0, 0, 0); }
+}
+@keyframes ken-burns-alt {
+  0%   { transform: scale(1.12) translate3d(1%, 1%, 0); }
+  50%  { transform: scale(1.20) translate3d(-2%, -1.5%, 0); }
+  100% { transform: scale(1.12) translate3d(1%, 1%, 0); }
+}
+@keyframes drift-hue {
+  0%, 100% { filter: brightness(1) saturate(1.05); }
+  50%      { filter: brightness(1.06) saturate(1.18); }
+}
+
+.animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+.animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+.animate-lava-pulse { animation: lava-pulse 4s ease-in-out infinite; }
+.animate-smoke { animation: smoke-rise 6s linear infinite; }
+.animate-meteor { animation: meteor-fall 2.5s linear infinite; }
+.animate-shake { animation: screen-shake 0.6s ease-in-out infinite; }
+.animate-flash { animation: flash 0.4s ease-in-out infinite; }
+.animate-orbit { animation: orbit 12s linear infinite; }
+.animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
+.animate-walk-bob { animation: walk-bob 0.6s ease-in-out infinite; }
+.animate-fish { animation: float-fish 18s linear infinite; }
+.animate-fade-up { animation: fade-up 0.9s ease-out both; }
+.animate-ken-burns { animation: ken-burns 24s ease-in-out infinite; }
+.animate-ken-burns-alt { animation: ken-burns-alt 28s ease-in-out infinite; }
+.animate-drift-hue { animation: drift-hue 10s ease-in-out infinite; }
+
+/* Living photo wrapper: outer element gets scroll-parallax transform,
+   inner <img> gets infinite ken-burns so the picture looks like a slow gif. */
+.living-photo { position: absolute; inset: 0; will-change: transform; }
+.living-photo > img {
+  width: 100%;
+  height: 110%;
+  object-fit: cover;
+  animation: ken-burns 22s ease-in-out infinite, drift-hue 12s ease-in-out infinite;
+  will-change: transform, filter;
+}
+.living-photo.alt > img { animation: ken-burns-alt 26s ease-in-out infinite, drift-hue 14s ease-in-out infinite; }
+
+/* Reveal-on-scroll utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.text-glow-cyan { text-shadow: 0 0 20px oklch(0.82 0.18 200 / 0.7), 0 0 40px oklch(0.82 0.18 200 / 0.4); }
+.text-glow-amber { text-shadow: 0 0 20px oklch(0.85 0.18 80 / 0.8), 0 0 40px oklch(0.85 0.18 80 / 0.4); }
+.text-glow-magenta { text-shadow: 0 0 20px oklch(0.72 0.22 330 / 0.7), 0 0 40px oklch(0.72 0.22 330 / 0.4); }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+}
